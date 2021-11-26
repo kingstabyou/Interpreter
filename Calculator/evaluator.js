@@ -75,3 +75,47 @@ var evaluate = function (parseTree) {
 	}
 	return output;
 };
+
+
+
+o={
+	"type": "*",
+	"left": {
+	  "type": "%",
+	  "left": {
+		"type": "number",
+		"value": 12
+	  },
+	  "right": {
+		"type": "number",
+		"value": 7
+	  }
+	},
+	"right": {
+	  "type": "+",
+	  "left": {
+		"type": "number",
+		"value": 3
+	  },
+	  "right": {
+		"type": "number",
+		"value": 2
+	  }
+	}
+  }
+
+p={
+	"type": "assign",
+	"name": "minutesPerDay",
+	"value": {
+	  "type": "*",
+	  "left": {
+		"type": "identifier",
+		"value": "minutesPerHour"
+	  },
+	  "right": {
+		"type": "identifier",
+		"value": "hoursPerDay"
+	  }
+	}
+  }

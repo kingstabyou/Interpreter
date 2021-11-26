@@ -42,9 +42,7 @@ cylinderVolume(2, 4)
 		try {
 			var tokens = lex(input);
 			var parseTree = parse(tokens);
-			parseTree.forEach(element => {
-				console.log(element,output[element])
-			});
+			console.log(parseTree);
 			var output = evaluate(parseTree);
 			return output;
 		} catch (e) {
@@ -60,3 +58,11 @@ cylinderVolume(2, 4)
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
