@@ -10,7 +10,9 @@ function Evaluator(parsedTree){
         variables[parsedTree.name]=Evaluator(parsedTree.value);
         if(parsedTree.body) return Evaluator(parsedTree.body);
     } 
-    else if(parsedTree.type=="identifier") return variables[parsedTree.value] 
+    else if(parsedTree.type=="identifier") return variables[parsedTree.value] ;
+    else if(parsedTree.type=="compare") return Evaluator(parsedTree.left)==Evaluator(parsedTree.right);
+    // else if(parsedTree.type=="if") 
 }
 
 var binOpEval={
