@@ -8,11 +8,12 @@ function Evaluator(parsedTree){
     else if(binOpEval[parsedTree.type]) return binOpEval[parsedTree.type](Evaluator(parsedTree.left),Evaluator(parsedTree.right));
     else if(parsedTree.type=="assign"){
         variables[parsedTree.name]=Evaluator(parsedTree.value);
-        if(parsedTree.body) return Evaluator(parsedTree.body);
+        if(parsedTree.body) return Evaluator(parsedTree.body)
+        else return variables[parsedTree.name]
     } 
     else if(parsedTree.type=="identifier") return variables[parsedTree.value] ;
     else if(parsedTree.type=="compare") return Evaluator(parsedTree.left)==Evaluator(parsedTree.right);
-    // else if(parsedTree.type=="if") 
+    else if(parsedTree.type=="if") return Evaluator(parsedTree.condition)?Evaluator(parsedTree.iftrue):Evaluator(parsedTree.elsefalse);
 }
 
 var binOpEval={

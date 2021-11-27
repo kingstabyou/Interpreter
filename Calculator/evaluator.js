@@ -198,3 +198,67 @@ c={
 	  }
 	}
   }
+
+
+  d={
+	"type": "compare",
+	"left": {
+	  "type": "number",
+	  "value": 24
+  },
+	"right": {
+	  "type": "number",
+	  "value": 24
+  }  
+}
+
+
+e={
+	"type": "assign",
+	"name": "hoursPerDay",
+	"value": {
+	  "type": "number",
+	  "value": 24
+	},
+	"body": {
+	  "type": "*",
+	  "left": {
+		"type": "assign",
+		"name":"minutesPerHour",
+		"value":{
+			"type":"number",
+			"value":20
+		},
+		"body":{
+			"type":"if",
+			"condition":{
+				"type":"compare",
+				"left":{
+					"type": "identifier",
+					"value": "hoursPerDay"
+				},
+				"right":{
+					"type": "identifier",
+					"value": "minutesPerHour"
+				}
+			},
+			"iftrue":{
+				"type":"number",
+				"value":1
+			},
+			"elsefalse":{
+				"type": "assign",
+				"name":"hoursPerDay",
+				"value":{
+					"type":"identifier",
+					"value":"minutesPerHour"
+				}		
+			}
+		}
+	  },
+	  "right": {
+		"type": "identifier",
+		"value": "hoursPerDay"
+	  }
+	  }
+  }
