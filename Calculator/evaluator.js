@@ -78,33 +78,108 @@ var evaluate = function (parseTree) {
 
 
 
-o={
+// o={
+// 	"type": "*",
+// 	"left": {
+// 	  "type": "%",
+// 	  "left": {
+// 		"type": "number",
+// 		"value": 12
+// 	  },
+// 	  "right": {
+// 		"type": "number",
+// 		"value": 7
+// 	  }
+// 	},
+// 	"right": {
+// 	  "type": "+",
+// 	  "left": {
+// 		"type": "number",
+// 		"value": 3
+// 	  },
+// 	  "right": {
+// 		"type": "number",
+// 		"value": 2
+// 	  }
+// 	}
+//   }
+
+// p={
+// 	"type": "assign",
+// 	"name": "minutesPerDay",
+// 	"value": {
+// 	  "type": "*",
+// 	  "left": {
+// 		"type": "identifier",
+// 		"value": "minutesPerHour"
+// 	  },
+// 	  "right": {
+// 		"type": "identifier",
+// 		"value": "hoursPerDay"
+// 	  }
+// 	}
+//   }
+
+
+
+//   {
+// 	"type": "+",
+// 	"left": {
+// 	  "type": "number",
+// 	  "value": 3
+// 	},
+// 	"right": {
+// 	  "type": "number",
+// 	  "value": 2
+// 	}
+//   }
+
+
+a={
+  "type": "assign",
+  "name": "hoursPerDay",
+  "value": {
+    "type": "number",
+    "value": 24
+  },
+  "body": {
 	"type": "*",
 	"left": {
-	  "type": "%",
-	  "left": {
-		"type": "number",
-		"value": 12
+	  "type": "assign",
+	  "name":"minutesPerHour",
+	  "value":{
+		  "type":"number",
+		  "value":20
 	  },
-	  "right": {
-		"type": "number",
-		"value": 7
+	  "body":{
+		  "type":"-",
+		  "left":{
+			  "type":"number",
+			  "value":19
+		  },
+		  "right":{
+			  "type":"identifier",
+			  "value":"minutesPerHour"
+		  }
 	  }
 	},
 	"right": {
-	  "type": "+",
-	  "left": {
-		"type": "number",
-		"value": 3
-	  },
-	  "right": {
-		"type": "number",
-		"value": 2
-	  }
+	  "type": "identifier",
+	  "value": "hoursPerDay"
+	}
+	}
+}
+
+b={
+	"type": "assign",
+	"name": "minutesPerHour",
+	"value": {
+	  "type": "number",
+	  "value": 60
 	}
   }
 
-p={
+c={
 	"type": "assign",
 	"name": "minutesPerDay",
 	"value": {
