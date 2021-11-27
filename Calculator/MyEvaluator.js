@@ -3,15 +3,21 @@ var result = function(parsedTree){
 }
 
 function Evaluator(parsedTree){
-    switch(parsedTree.type){
-        case "*" :
-            return BinOpEval(parsedTree,parsedTree.type);
-        case ""
-    }
+    if(parsedTree.type==="number") return parsedTree.value;
+    else if(binOpEval[parsedTree.type]) return binOpEval[parsedTree.type](Evaluator(parsedTree.left),Evaluator(parsedTree.right));
+
+    // switch(parsedTree.type){
+    //     case "number": return parsedTree.value
+    //     break;
+    //     case binOpEval[parsedTree.type] :
+    //         return binOpEval[parsedTree.type](Evaluator(parsedTree.left),Evaluator(parsedTree.right));
+    // }
 }
 
-function BinOpEval(parsedTree,op){
-    
-    if(parsedTree.left) ? return Evaluator(parsedTree.left)
-    
+var binOpEval={
+    "+": function(left,right){ return left+right},
+    "-": function(left,right){ return left-right},
+    "*": function(left,right){ return left*right},
+    "/": function(left,right){ return left/right}
 }
+

@@ -37,13 +37,17 @@ cylinderVolume(2, 4)
 <script src="lexer.js"></script>
 <script src="parser.js"></script>
 <script src="evaluator.js"></script>
+<script src="MyEvaluator.js"></script>
 <script>
 	var calculate = function (input) {
 		try {
-			var tokens = lex(input);
-			var parseTree = parse(tokens);
-			console.log(parseTree);
-			var output = evaluate(parseTree);
+			// var tokens = lex(input);
+			// var parseTree = parse(tokens);
+			// console.log(parseTree);
+			// var output = evaluate(parseTree);
+			const c=JSON.parse(input);
+			console.log(c);
+			var output=result(c);
 			return output;
 		} catch (e) {
 			return e;
