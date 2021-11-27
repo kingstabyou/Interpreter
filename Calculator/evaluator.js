@@ -134,6 +134,10 @@ var evaluate = function (parseTree) {
 // 	}
 //   }
 
+// hoursPerDay=24;
+// minutesPerHour=20;
+// minutesPerHour=19-minutesPerHour;
+// return minutesPerHour*hoursPerDay;
 
 a={
   "type": "assign",
