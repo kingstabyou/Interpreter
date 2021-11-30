@@ -183,23 +183,60 @@ g={
         }
     }
   
+    //   "params":{
+    //     "type": "assign",
+    //     "name":"hoursPerDay",
+    //     "value":{
+    //         "type":"number",
+    //         "value":0
+    //     }		
+    //   },
   
 i={
       "type":"funcdecl",
       "name":"test",
+        "params":["hoursPerDay","minutesPerHour"],
       "body":{
-          "type": "compare",
-          "left": {
-            "type": "number",
-            "value": 24
+        "type":"if",
+        "condition":{
+            "type":"compare",
+            "left":{
+                "type": "identifier",
+                "value": "hoursPerDay"
+            },
+            "right":{
+                "type": "identifier",
+                "value": "minutesPerHour"
+            }
         },
-          "right": {
-            "type": "number",
-            "value": 24
-        }
-      },
+        "iftrue":{
+            "type":"number",
+            "value":1
+        },
+        "elsefalse":{
+            "type": "assign",
+            "name":"hoursPerDay",
+            "value":{
+                "type":"identifier",
+                "value":"minutesPerHour"
+            }		
+        }},
       "callsite":{
           "type":"funccall",
           "name":"test"
       }  
   }
+
+  j={
+      x: function name(params) {
+          
+      };
+  }
+
+  k={
+      x:{
+
+      }
+  }
+
+  j[parsedTree.name](...arr)

@@ -18,10 +18,15 @@ function Evaluator(parsedTree){
     else if(parsedTree.type=="compare") return Evaluator(parsedTree.left)==Evaluator(parsedTree.right);
     else if(parsedTree.type=="if") return Evaluator(parsedTree.condition)?Evaluator(parsedTree.iftrue):Evaluator(parsedTree.elsefalse);
     else if(parsedTree.type=="funcdecl") {
-        func[parsedTree.name]=parsedTree.body;
+        // funcdecl[parsedTree.name]=parsedTree.name;
+        console.log(typeof JSON.stringify(parsedTree.body));
+        var tempfunc = new Function("value",JSON.stringify(parsedTree.body));
+        // func[parsedTree.name]=tempfunc;
         return Evaluator(parsedTree.callsite);
     }
     else if(parsedTree.type=="funccall") {
+        console.log(func);
+        console.log(func[parsedTree.name]);
         return Evaluator(func[parsedTree.name]);
     } 
 }
