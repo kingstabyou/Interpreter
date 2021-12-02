@@ -1,5 +1,6 @@
 var result = function (parsedTree) {
     return Evaluator(parsedTree);
+    // return evalfunc[parsedTree.type](parsedTree);
 };
 
 var binOpEval = {
@@ -18,8 +19,19 @@ var binOpEval = {
 };
 
 let variables = {};
+let funcdecl = {};
+
+let evalfunc = {
+    "number": function(parsedTree){ return parsedTree.value; },
+    "+": function (parsedTree) { return evalfunc[parsedTree.left] + evalfunc[parsedTree.right]; },
+    "-": function (parsedTree) { return evalfunc[parsedTree.left] - evalfunc[parsedTree.right]; },
+    "*": function (parsedTree) { return evalfunc[parsedTree.left] * evalfunc[parsedTree.right]; },
+    "/": function (parsedTree) { return evalfunc[parsedTree.left] / evalfunc[parsedTree.right]; },
+};
+
 
 function Evaluator(parsedTree) {
+    
     if (parsedTree.type == "number") return parsedTree.value;
 
     else if (binOpEval[parsedTree.type])
@@ -27,29 +39,32 @@ function Evaluator(parsedTree) {
             Evaluator(parsedTree.left),
             Evaluator(parsedTree.right)
         );
-    
+
     else if (parsedTree.type == "assign") {
         variables[parsedTree.name] = Evaluator(parsedTree.value);
         if (parsedTree.body) return Evaluator(parsedTree.body);
         else return variables[parsedTree.name];
-    }
+    } 
 
-     else if (parsedTree.type == "identifier")
+    else if (parsedTree.type == "identifier")
         return variables[parsedTree.value];
 
     else if (parsedTree.type == "compare")
         return Evaluator(parsedTree.left) == Evaluator(parsedTree.right);
+
     else if (parsedTree.type == "if")
         return Evaluator(parsedTree.condition)
             ? Evaluator(parsedTree.iftrue)
             : Evaluator(parsedTree.elsefalse);
+
     else if (parsedTree.type == "funcdecl") {
-        variables[parsedTree.name] = new Function(
-            "",
-            "return Evaluator("+JSON.stringify(parsedTree.body)+")"
-        );
+        funcdecl[parsedTree.name] = new Function("temp","return Evaluator(parsedTree.body)");
         return Evaluator(parsedTree.callsite);
-    } else if (parsedTree.type == "funccall") {
-        return variables[parsedTree.name]();
+    } 
+    
+    else if (parsedTree.type == "funccall") {
+        return funcdecl[parsedTree.name]() ;
     }
 }
+
+

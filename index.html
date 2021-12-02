@@ -9,23 +9,10 @@ Enter ParseTree:<br>
 </textarea><br>
 <button id="evaluate">Evaluate</button>
 <pre id="output"></pre>
-<script>
-	if (!Object.create) {
-		Object.create = function (o) {
-			function F() { }
-			F.prototype = o;
-			return new F();
-		};
-	}
-</script>
 <script src="MyEvaluator.js"></script>
 <script>
 	var evaluate = function (input) {
 		try {
-			// var tokens = lex(input);
-			// var parseTree = parse(tokens);
-			// console.log(parseTree);
-			// var output = evaluate(parseTree);
 			const c=JSON.parse(input);
 			console.log(c);
 			var output=result(c);
