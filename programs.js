@@ -270,6 +270,43 @@ z={
     }
 }
 
+zz={
+    "type": "funcdecl",
+    "name": "test",
+    "params":["a","b"],
+    "body": {
+        "type": "if",
+        "condition": {
+            "type": "compare",
+            "left": {
+                "type": "identifier",
+                "value": "a"
+            },
+            "right": {
+                "type": "identifier",
+                "value": "b"
+            }
+        },
+        "iftrue": {
+            "type": "number",
+            "value": 1
+        },
+        "elsefalse": {
+            "type": "number",
+            "value": 0
+        }
+    },
+    "callsite": {
+        "type": "funccall",
+        "params":[
+            {"type": "number",
+                "value": 1},
+            {"type": "number",
+                "value": 2}
+            ],
+        "name": "test"
+    }
+}
 // [
 //     {
 //         "type": "assign",
@@ -351,3 +388,144 @@ k={
 
 
 2+3*4
+
+
+p1={
+    "type": "number",
+    "value": 474
+}
+
+p2={
+    "type":"/",
+    "left":{
+        "type":"+",
+        "left":{
+            "type": "number",
+            "value": 400        
+        },
+        "right":{
+            "type": "number",
+            "value": 74        
+        }
+    },
+    "right":{
+        "type": "number",
+        "value": 3        
+    }
+}
+
+p3={
+    "type":"compare",
+    "left":{
+        "type":"/",
+        "left":{
+            "type":"+",
+            "left":{
+                "type": "number",
+                "value": 400        
+            },
+            "right":{
+                "type": "number",
+                "value": 74        
+            }
+        },
+        "right":{
+            "type": "number",
+            "value": 3        
+        }
+    },
+    "right":{
+        "type": "number",
+        "value": 158        
+    }
+}
+
+p4={
+    "type":"if",
+    "condition":{
+        "type":"compare",
+        "left":{
+            "type":"/",
+            "left":{
+                "type":"+",
+                "left":{
+                    "type": "number",
+                    "value": 400        
+                },
+                "right":{
+                    "type": "number",
+                    "value": 74        
+                }
+            },
+            "right":{
+                "type": "number",
+                "value": 3        
+            }
+        },
+        "right":{
+            "type": "number",
+            "value": 158        
+        }
+    },
+    "iftrue":{                    
+        "type": "number",
+        "value": 474   
+    },
+    "elsefalse":{
+        "type":"/",
+        "left":{                    
+            "type": "number",
+            "value": 474   
+        },
+        "right":{                    
+            "type": "number",
+            "value": 0   
+        }
+    }
+}
+
+p5={
+    "type": "assign",
+    "name": "divident",
+    "value": {
+        "type": "number",
+        "value": 474
+    },
+    "body":{
+        "type": "assign",
+        "name": "divisor",
+        "value": {
+            "type": "number",
+            "value": 2
+        },
+        "body":{
+        "type": "if",
+        "condition": {
+            "type": "compare",
+            "left": {
+                "type": "identifier",
+                "value": "divisor"
+            },
+            "right": {
+                "type": "number",
+                "value": 0
+            }
+        },
+        "iftrue": {
+            "type": "number",
+            "value": 0
+        },
+        "elsefalse": {
+            "type": "/",
+            "left": {
+                "type": "identifier",
+                "value": "divident"
+            },
+            "right":{
+                "type": "identifier",
+                "value": "divisor"    
+            }
+        }
+        }   
+    }
+}

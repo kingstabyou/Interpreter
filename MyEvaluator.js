@@ -18,9 +18,6 @@ var binOpEval = {
 };
 
 let variables = {};
-// function functemplate(parsedTree) {
-//     return Evaluator(parsedTree)
-// }
 
 function Evaluator(parsedTree) {
     if (parsedTree.type == "number") return parsedTree.value;
@@ -49,19 +46,15 @@ function Evaluator(parsedTree) {
             : Evaluator(parsedTree.elsefalse);
 
     else if (parsedTree.type == "funcdecl") {
-        // variables[parsedTree.name] = new Function(
-        //     "",
-        //     "return Evaluator("+JSON.stringify(parsedTree.body)+")"
-        // );
-        // variables[parsedTree.name]= functemplate(parsedTree.body)
-        variables[parsedTree.name]= function(...args){
-            return Evaluator(parsedTree.body)
-        }
+        variables[parsedTree.name] = new Function(
+            "",
+            "return Evaluator("+JSON.stringify(parsedTree.body)+")"
+        );
+        variables[parsedTree.name]= functemplate(parsedTree.body)
         return Evaluator(parsedTree.callsite);
     } 
     
     else if (parsedTree.type == "funccall") {
-        console.log(typeof variables[parsedTree.name])
-        return variables[parsedTree.name].apply(null,[]);
+        return variables[parsedTree.name]();
     }
 }
