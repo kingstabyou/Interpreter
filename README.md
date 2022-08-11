@@ -6,8 +6,9 @@ Lexical-scoping based execution environments incorporated for performing binary 
 
 
 Example of a language instruction :-
+```
+(12%7)*(3+2)
 
-// (12%7)*(3+2)
 a = {
     "type": "*",
     "left": {
@@ -33,6 +34,6 @@ a = {
         }
     }
 }
-
+```
 
 More of the same examples found [here](https://github.com/kingstabyou/Interpreter/blob/master/programs.js)
